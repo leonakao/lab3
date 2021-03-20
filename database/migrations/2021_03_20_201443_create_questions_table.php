@@ -15,15 +15,12 @@ class CreateQuestionsTable extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('subject_id');
+            $table->foreignId('subject_id')
+                ->constrained('subjects')
+                ->onDelete('cascade');
             $table->string('text');
             $table->timestamps();
             $table->softDeletes();
-
-            $table->foreign('subject_id')
-                ->references('id')
-                ->on('subjects')
-                ->onDelete('cascade');
         });
     }
 
