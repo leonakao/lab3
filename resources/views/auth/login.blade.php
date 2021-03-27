@@ -2,7 +2,7 @@
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                <x-application-logo class="w-60 h-60 fill-current text-gray-500" />
             </a>
         </x-slot>
 
@@ -27,9 +27,10 @@
                 <x-label for="password" :value="__('Password')" />
 
                 <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
+                    type="password"
+                    name="password"
+                    required autocomplete="current-password"
+                />
             </div>
 
             <!-- Remember Me -->
