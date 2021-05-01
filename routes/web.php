@@ -17,8 +17,22 @@ Route::get('/', function () {
     return redirect('login');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    Route::get('/subjects', function () {
+        return view('subject-index');
+    })->name('subject.index');
+
+    Route::get('/questions', function () {
+        return view('question-index');
+    })->name('question.index');
+
+    Route::get('/answers', function () {
+        return view('answer-index');
+    })->name('answer.index');
+});
 
 require __DIR__.'/auth.php';
