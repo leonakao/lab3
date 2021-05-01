@@ -29,16 +29,29 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/create', function () {
             return view('subject-create');
-        })->name('subjects.create');
+        })->name('subject.create');
     });
 
-    Route::get('/questions', function () {
-        return view('question-index');
-    })->name('question.index');
+    Route::prefix('questions')->group(function () {
+        Route::get('/', function () {
+            return view('question-index');
+        })->name('question.index');
 
-    Route::get('/answers', function () {
-        return view('answer-index');
-    })->name('answer.index');
+        Route::get('/create', function () {
+            return view('question-create');
+        })->name('question.create');
+    });
+
+    Route::prefix('answers')->group(function () {
+        Route::get('/', function () {
+            return view('answer-index');
+        })->name('answer.index');
+
+        Route::get('/create', function () {
+            return view('answer-create');
+        })->name('answer.create');
+    });
+
 });
 
 require __DIR__.'/auth.php';
