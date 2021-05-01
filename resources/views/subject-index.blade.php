@@ -44,7 +44,7 @@
                                                         <div class="text-sm text-gray-900">{{ $subject->name }}</div>
                                                     </td>
                                                     <td class="px-6 py-4 whitespace-nowrap text-right font-medium">
-                                                        <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                                        <a href="{{ route('subjects.edit', $subject->id) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                                                         {{ Form::open(array('route' => array('subjects.destroy', $subject->id), 'method' => 'delete')) }}
                                                             <button type="submit" class="text-red-500 transition-colors duration-150 focus:shadow-outline hover:underline">Delete</button>
                                                         {{ Form::close() }}

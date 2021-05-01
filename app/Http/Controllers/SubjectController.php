@@ -42,13 +42,22 @@ class SubjectController extends Controller
         return $subject->attributesToArray();
     }
 
+    public function edit($id)
+    {
+        $subject = $this->model->find($id);
+
+        return view('subject-update', [
+            'subject' => $subject,
+        ]);
+    }
+
     public function update(Request $request, $id)
     {
         $subject = $this->model->find($id);
 
         $subject = $subject->update($request->all());
 
-        return 'ok';
+        return redirect()->route('subjects.index');
     }
 
     public function destroy($id)
