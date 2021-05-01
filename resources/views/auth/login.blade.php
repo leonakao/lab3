@@ -53,5 +53,11 @@
                 </x-button>
             </div>
         </form>
+        <hr class="my-2">
+        <div class="flex items-center justify-end">
+            @if (Route::has('register'))
+                <a href="{{ route('register') }}" class="text-sm text-gray-600 hover:underline">Register</a>
+            @endif
+        </div>
     </x-auth-card>
 </x-guest-layout>
