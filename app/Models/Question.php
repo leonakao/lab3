@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Question extends Model
 {
     use SoftDeletes;
+
+    protected $fillable = [
+        'text',
+        'subject_id',
+    ];
 }
