@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\SubjectController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,15 +26,17 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('subjects', SubjectController::class);
 
-    Route::prefix('questions')->group(function () {
-        Route::get('/', function () {
-            return view('question-index');
-        })->name('question.index');
+    Route::resource('questions', QuestionController::class);
 
-        Route::get('/create', function () {
-            return view('question-create');
-        })->name('question.create');
-    });
+    // Route::prefix('questions')->group(function () {
+    //     Route::get('/', function () {
+    //         return view('question-index');
+    //     })->name('question.index');
+
+    //     Route::get('/create', function () {
+    //         return view('question-create');
+    //     })->name('question.create');
+    // });
 
     Route::prefix('answers')->group(function () {
         Route::get('/', function () {
