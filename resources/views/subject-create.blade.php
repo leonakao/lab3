@@ -15,7 +15,7 @@
                         <div>
                             <x-label for="name" :value="__('Name')" />
 
-                            <x-input id="name" class="block mt-1 w-full" type="name" name="name" :value="old('name')" required autofocus />
+                            <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
                         </div>
 
                         <div class="flex items-center justify-end mt-4">
@@ -26,7 +26,7 @@
                             </a>
 
                             <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded ml-3">
-                                {{ __('Create') }}
+                                {{ __('Save') }}
                             </button>
                         </div>
                     </form>

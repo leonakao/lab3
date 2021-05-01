@@ -14,20 +14,22 @@
 
                         <div>
                             <x-label for="question" :value="__('Question')" />
-                            <x-input id="question" class="block mt-1 w-full" type="text" question="question" :value="old('question')" required autofocus />
-                        </div>
-
-                        <div class="mt-2">
-                            <x-label for="subject" :value="__('Subject')" />
 
                             <div class="relative inline-block w-full text-gray-700">
-                                <select name="subject" :value="old('subject')" class="w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline" placeholder="Select subject" required>
+                                <select id="question" name="question" :value="old('question')" class="w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline" placeholder="Select a question" required autofocus>
                                     <option>A regular sized select input</option>
                                     <option>Another option</option>
                                     <option>And one more</option>
                                 </select>
                             </div>
                         </div>
+
+                        <div class="mt-2">
+                            <x-label for="answer" :value="__('Answer')" />
+
+                            <textarea name="answer" class="w-full h-16 px-3 py-2 text-base text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow-outline" required></textarea>
+                        </div>
+
 
                         <div class="flex items-center justify-end mt-4">
                             <a href="{{ url()->previous() }}">
