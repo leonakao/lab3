@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Subjec;
 
 class Question extends Model
 {
@@ -13,4 +14,8 @@ class Question extends Model
         'text',
         'subject_id',
     ];
+
+    public function subject() {
+        return $this->belongsTo(Subject::class);
+    }
 }

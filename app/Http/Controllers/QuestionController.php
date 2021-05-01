@@ -14,7 +14,7 @@ class QuestionController extends Controller
 
     public function index()
     {
-        return $this->model->all()->toArray();
+        return $this->model->with('subject')->get();
     }
 
     public function store(Request $request)
@@ -26,9 +26,7 @@ class QuestionController extends Controller
 
     public function show($id)
     {
-        $question = $this->model->find($id);
-
-        return $question->attributesToArray();
+        return $this->model->with('subject')->where('id', $id)->get();
     }
 
     public function update(Request $request, $id)
