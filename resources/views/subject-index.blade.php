@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="flex justify-end mb-10">
-                        <a href="{{ route('subject.create') }}">
+                        <a href="{{ route('subjects.create') }}">
                             <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                 Create Subject
                             </button>
@@ -35,18 +35,22 @@
                                             </tr>
                                         </thead>
                                         <tbody class="bg-white divide-y divide-gray-200">
-                                            <tr>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm text-gray-900">1</div>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm text-gray-900">Matéria</div>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-right font-medium">
-                                                    <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                                    <a href="#" class="text-red-600 hover:text-red-900">Delete</a>
-                                                </td>
-                                            </tr>
+                                            @foreach ($subjects as $subject)
+                                                <tr>
+                                                    <td class="px-6 py-4 whitespace-nowrap">
+                                                        <div class="text-sm text-gray-900">{{ $subject->id }}</div>
+                                                    </td>
+                                                    <td class="px-6 py-4 whitespace-nowrap">
+                                                        <div class="text-sm text-gray-900">{{ $subject->name }}</div>
+                                                    </td>
+                                                    <td class="px-6 py-4 whitespace-nowrap text-right font-medium">
+                                                        <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                                        {{ Form::open(array('route' => array('subjects.destroy', $subject->id), 'method' => 'delete')) }}
+                                                            <button type="submit" class="text-red-500 transition-colors duration-150 focus:shadow-outline hover:underline">Delete</button>
+                                                        {{ Form::close() }}
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

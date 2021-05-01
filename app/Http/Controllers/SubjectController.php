@@ -16,14 +16,23 @@ class SubjectController extends Controller
 
     public function index()
     {
-        return $this->model->all()->toArray();
+        $subjects = $this->model->all();
+
+        return view('subject-index', [
+            'subjects' => $subjects,
+        ]);
+    }
+
+    public function create()
+    {
+        return view('subject-create');
     }
 
     public function store(Request $request)
     {
         $subject = $this->model->create($request->all());
 
-        return $subject->attributesToArray();
+        return redirect()->route('subjects.index');
     }
 
     public function show($id)
@@ -48,6 +57,6 @@ class SubjectController extends Controller
 
         $subject = $subject->delete();
 
-        return 'ok';
+        return redirect()->route('subjects.index');
     }
 }
