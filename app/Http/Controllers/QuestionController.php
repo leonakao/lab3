@@ -14,7 +14,14 @@ class QuestionController extends Controller
 
     public function index()
     {
-        return $this->model->with('subject')->get();
+        return view('question-index', [
+            'questions' => $this->model->with('subject')->get(),
+        ]);
+    }
+
+    public function create()
+    {
+        return view('question-create');
     }
 
     public function store(Request $request)

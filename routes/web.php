@@ -28,16 +28,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('questions', QuestionController::class);
 
-    // Route::prefix('questions')->group(function () {
-    //     Route::get('/', function () {
-    //         return view('question-index');
-    //     })->name('question.index');
-
-    //     Route::get('/create', function () {
-    //         return view('question-create');
-    //     })->name('question.create');
-    // });
-
     Route::prefix('answers')->group(function () {
         Route::get('/', function () {
             return view('answer-index');

@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="flex justify-end mb-10">
-                        <a href="{{ route('question.create') }}">
+                        <a href="{{ route('questions.create') }}">
                             <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                 Create Question
                             </button>
