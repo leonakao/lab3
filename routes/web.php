@@ -22,9 +22,15 @@ Route::middleware(['auth'])->group(function () {
         return view('dashboard');
     })->name('dashboard');
 
-    Route::get('/subjects', function () {
-        return view('subject-index');
-    })->name('subject.index');
+    Route::prefix('/subjects')->group(function () {
+        Route::get('/', function () {
+            return view('subject-index');
+        })->name('subject.index');
+
+        Route::get('/create', function () {
+            return view('subject-create');
+        })->name('subjects.create');
+    });
 
     Route::get('/questions', function () {
         return view('question-index');
