@@ -30,7 +30,7 @@ class SubjectController extends Controller
 
     public function store(Request $request)
     {
-        $subject = $this->model->create($request->all());
+        $this->model->create($request->all());
 
         return redirect()->route('subjects.index');
     }
@@ -55,7 +55,7 @@ class SubjectController extends Controller
     {
         $subject = $this->model->find($id);
 
-        $subject = $subject->update($request->all());
+        $subject->update($request->all());
 
         return redirect()->route('subjects.index');
     }
@@ -64,7 +64,7 @@ class SubjectController extends Controller
     {
         $subject = $this->model->find($id);
 
-        $subject = $subject->delete();
+        $subject->delete();
 
         return redirect()->route('subjects.index');
     }

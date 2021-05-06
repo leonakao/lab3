@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Question;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
@@ -21,36 +22,52 @@ class QuestionController extends Controller
 
     public function create()
     {
-        return view('question-create');
+        return view('question-create', [
+            'subjects' => Subject::all(),
+        ]);
     }
 
     public function store(Request $request)
     {
-        $question = $this->model->create($request->all());
+        $this->model->create($request->all());
 
-        return $question->attributesToArray();
+        return redirect()->route('questions.index');
     }
 
     public function show($id)
     {
-        return $this->model->with('subject')->where('id', $id)->get();
+        $question = $this->model->find($id);
+
+        return view('question-show', [
+            'question' => $question,
+        ]);
+    }
+
+    public function edit(Request $request, $id)
+    {
+        $question = $this->model->find($id);
+
+        return view('question-update', [
+            'question' => $question,
+            'subjects' => Subject::all(),
+        ]);
     }
 
     public function update(Request $request, $id)
     {
         $question = $this->model->find($id);
 
-        $question = $question->update($request->all());
+        $question->update($request->all());
 
-        return 'ok';
+        return redirect()->route('questions.index');
     }
 
     public function destroy($id)
     {
         $question = $this->model->find($id);
 
-        $question = $question->delete();
+        $question->delete();
 
-        return 'ok';
+        return redirect()->route('questions.index');
     }
 }
