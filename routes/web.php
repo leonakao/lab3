@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AwnserController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\SubjectController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,6 +29,9 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('subjects', SubjectController::class);
 
     Route::resource('questions', QuestionController::class);
+
+    //descomenta aqui seu corno
+    //Route::resource('answers', AwnserController::class);
 
     Route::prefix('answers')->group(function () {
         Route::get('/', function () {
