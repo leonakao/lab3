@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AwnserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SubjectController;
@@ -22,3 +23,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::resource('subjects', SubjectController::class);
 Route::resource('questions', QuestionController::class);
+Route::resource('answers', AwnserController::class);
