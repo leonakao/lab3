@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Question > Create') }}
+            {{ __('Answer > Create') }}
         </h2>
     </x-slot>
 
@@ -9,16 +9,19 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <form method="POST" action="{{ route('answers.store') }}">
+                    {{ Form::open(array('route' => array('answers.update', $answer->id), 'method' => 'PUT')) }}
                         @csrf
 
                         <div>
                             <x-label for="question_id" :value="__('Question')" />
 
                             <div class="relative inline-block w-full text-gray-700">
-                                <select id="question_id" name="question_id" :value="old('question_id')" class="w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline" placeholder="Select a question" required autofocus>
+                                <select id="question_id" value="{{ $answer->question_id }}" name="question_id" :value="old('question_id')" class="w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline" placeholder="Select a question" required autofocus>
                                     @foreach ($questions as $question)
-                                        <option value="{{ $question->id }}">
+                                        <option
+                                            {{ $question->id === $answer->question_id ? 'selected' : '' }}
+                                            value="{{ $question->id }}"
+                                        >
                                             {{ $question->text }}
                                         </option>
                                     @endforeach
@@ -29,7 +32,7 @@
                         <div class="mt-2">
                             <x-label for="response" :value="__('Answer')" />
 
-                            <textarea name="response" class="w-full h-16 px-3 py-2 text-base text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow-outline" required></textarea>
+                            <textarea name="response" value="{{ $answer->response }}" class="w-full h-16 px-3 py-2 text-base text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow-outline" required>{{ $answer->response }}</textarea>
                         </div>
 
                         <input type="hidden" name="user_id" value="{{ auth()->user()->id }}" />
@@ -45,7 +48,7 @@
                                 {{ __('Save') }}
                             </button>
                         </div>
-                    </form>
+                    {{ Form::close() }}
                 </div>
             </div>
         </div>

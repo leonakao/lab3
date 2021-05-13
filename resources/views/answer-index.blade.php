@@ -41,27 +41,37 @@
                                             </tr>
                                         </thead>
                                         <tbody class="bg-white divide-y divide-gray-200">
-                                            <tr>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm text-gray-900">1</div>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm text-gray-900">Question</div>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                        Subject
-                                                    </span>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm text-gray-900">Answer</div>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-right font-medium">
-                                                    <a href="#" class="text-blue-600 hover:text-blue-900">Show</a>
-                                                    <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                                    <a href="#" class="text-red-600 hover:text-red-900">Delete</a>
-                                                </td>
-                                            </tr>
+                                            @foreach ($answers as $answer)
+                                                <tr>
+                                                    <td class="px-6 py-4 whitespace-nowrap">
+                                                        <div class="text-sm text-gray-900">
+                                                            {{ $answer->id }}
+                                                        </div>
+                                                    </td>
+                                                    <td class="px-6 py-4 whitespace-nowrap">
+                                                        <div class="text-sm text-gray-900">
+                                                            {{ $answer->question->text }}
+                                                        </div>
+                                                    </td>
+                                                    <td class="px-6 py-4 whitespace-nowrap">
+                                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                            {{ $answer->question->subject->name }}
+                                                        </span>
+                                                    </td>
+                                                    <td class="px-6 py-4 whitespace-nowrap">
+                                                        <div class="text-sm text-gray-900">
+                                                            {{ $answer->response }}
+                                                        </div>
+                                                    </td>
+                                                    <td class="px-6 py-4 whitespace-nowrap text-right font-medium">
+                                                        <a href="{{ route('answers.show', $answer->id) }}" class="text-blue-600 hover:text-blue-900">Show</a>
+                                                        <a href="{{ route('answers.edit', $answer->id) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                                        {{ Form::open(array('route' => array('answers.destroy', $answer->id), 'method' => 'delete')) }}
+                                                            <button type="submit" class="text-red-500 transition-colors duration-150 focus:shadow-outline hover:underline">Delete</button>
+                                                        {{ Form::close() }}
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

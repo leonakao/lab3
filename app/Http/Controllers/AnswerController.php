@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Answer;
+use App\Models\Question;
 use Illuminate\Http\Request;
 
 class AnswerController extends Controller
@@ -14,7 +15,7 @@ class AnswerController extends Controller
 
     public function index()
     {
-        $answers = $this->model->with(['question', 'user'])->get();
+        $answers = $this->model->all();
 
         return view('answer-index', [
             'answers' => $answers,
@@ -23,19 +24,35 @@ class AnswerController extends Controller
 
     public function create()
     {
-        return view('answers-create');
+        return view('answer-create', [
+            'questions' => Question::all(),
+        ]);
     }
 
     public function store(Request $request)
     {
         $answer = $this->model->create($request->all());
 
-        return $answer->attributesToArray();
+        return redirect()->route('answers.index');
     }
 
     public function show($id)
     {
-        return $this->model->with(['question', 'user'])->where('id', $id)->get();
+        $answer = $this->model->findOrFail($id);
+
+        return view('answer-show', [
+            'answer' => $answer,
+        ]);
+    }
+
+    public function edit($id)
+    {
+        $answer = $this->model->findOrFail($id);
+
+        return view('answer-update', [
+            'answer' => $answer,
+            'questions' => Question::all(),
+        ]);
     }
 
     public function update(Request $request, $id)
@@ -44,7 +61,7 @@ class AnswerController extends Controller
 
         $answer = $answer->update($request->all());
 
-        return 'ok';
+        return redirect()->route('answers.index');
     }
 
     public function destroy($id)
@@ -53,6 +70,6 @@ class AnswerController extends Controller
 
         $answer = $answer->delete();
 
-        return 'ok';
+        return redirect()->route('answers.index');
     }
 }

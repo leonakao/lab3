@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Subject > Create') }}
+            {{ __('Question > Create') }}
         </h2>
     </x-slot>
 
@@ -21,10 +21,10 @@
                             <x-label for="subject" :value="__('Subject')" />
 
                             <div class="relative inline-block w-full text-gray-700">
-                                <select name="subject_id" :value="old('subject_id')" class="w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline" placeholder="Select subject" required>
+                                <select name="subject_id" value="{{ $question->subject_id }}" class="w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline" placeholder="Select subject" required>
                                     @foreach ($subjects as $subject)
                                         <option
-                                            :selected="$subject->id === $question->subject_id"
+                                            {{ $subject->id === $question->subject_id ? 'selected' : '' }}
                                             value="{{ $subject->id }}"
                                         >
                                             {{ $subject->name }}
