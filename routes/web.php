@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AwnserController;
+use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\SubjectController;
 
@@ -30,19 +30,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('questions', QuestionController::class);
 
-    //descomenta aqui seu corno
-    //Route::resource('answers', AwnserController::class);
-
-    Route::prefix('answers')->group(function () {
-        Route::get('/', function () {
-            return view('answer-index');
-        })->name('answer.index');
-
-        Route::get('/create', function () {
-            return view('answer-create');
-        })->name('answer.create');
-    });
-
+    Route::resource('answers', AnswerController::class);
 });
 
 require __DIR__.'/auth.php';

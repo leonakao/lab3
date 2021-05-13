@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAwnsersTable extends Migration
+class CreateAnswersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateAwnsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('awnsers', function (Blueprint $table) {
+        Schema::create('answers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('question_id')
                 ->constrained('questions')
@@ -34,6 +34,6 @@ class CreateAwnsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('awnsers');
+        Schema::dropIfExists('answers');
     }
 }

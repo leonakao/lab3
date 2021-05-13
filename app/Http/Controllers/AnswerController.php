@@ -2,19 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Awnser;
+use App\Models\Answer;
 use Illuminate\Http\Request;
 
-class AwnserController extends Controller
+class AnswerController extends Controller
 {
     public function __construct()
     {
-        $this->model = new Awnser();
+        $this->model = new Answer();
     }
 
     public function index()
     {
-        return $this->model->with(['question', 'user'])->get();
+        $answers = $this->model->with(['question', 'user'])->get();
+
+        return view('answer-index', [
+            'answers' => $answers,
+        ]);
     }
 
     public function create()
